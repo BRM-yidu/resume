@@ -492,6 +492,8 @@ footer.site-foot .gold{color:var(--gold)}
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
+<!-- 作品数据（由本地作品管理器生成；不存在时自动使用内置默认数据） -->
+<script src="data/works.js"></script>
 <script>
 /* ================= 作品数据 ================= */
 let WORKS = [
@@ -746,15 +748,19 @@ drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>drawer.cl
 const CAT_ART={'风景':'dawn-mountains','人像':'window-light','纪实':'market-life','视频':'film-travel','AI设计':'ai-city'};
 function catArt(c){return CAT_ART[c]||'dawn-mountains'}
 
-/* 从 data/works.json 加载作品（编辑器生成）；失败则使用内置默认数据 */
+/* 从数据源加载作品：优先 data/works.js（本地双击预览也可用），其次 data/works.json，最后内置默认 */
 async function loadWorks(){
-  try{
-    const res=await fetch('data/works.json?v='+Date.now());
-    if(res.ok){
-      const data=await res.json();
-      if(Array.isArray(data.works)&&data.works.length){WORKS=data.works}
-    }
-  }catch(e){}
+  if(window.__WORKS_DATA__&&Array.isArray(window.__WORKS_DATA__.works)&&window.__WORKS_DATA__.works.length){
+    WORKS=window.__WORKS_DATA__.works;
+  }else{
+    try{
+      const res=await fetch('data/works.json?v='+Date.now());
+      if(res.ok){
+        const data=await res.json();
+        if(Array.isArray(data.works)&&data.works.length){WORKS=data.works}
+      }
+    }catch(e){}
+  }
   renderGallery();
 }
 loadWorks();

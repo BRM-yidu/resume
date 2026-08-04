@@ -8,13 +8,13 @@
 
 ## 日常更新作品（推荐流程，全程无需写代码）
 
-1. 双击 **start.bat**（会先启动本地服务，再自动打开「作品管理器」）。
+1. 双击 **start.bat**（或直接双击 `resume-tools\editor.html`）打开「作品管理器」——**不需要 Python，也不需要服务器**。
 2. 在管理器点击「① 连接网站目录」，选择本 `resume` 文件夹。
 3. 把作品图片拖进管理器，填写分类 / 标题 / 描述，可排序、可删除、可换图。
-4. 点击「② 保存并生成 works.json」——图片自动存入 `images/`，数据写入 `data/works.json`。
+4. 点击「② 保存并生成 works.json」——图片自动存入 `images/`，数据写入 `data/works.json` 与 `data/works.js`。
 5. 双击 **sync.bat**，自动上传到 GitHub，约 1 分钟后网站更新完成。
 
-> 提示：管理器要求使用 Edge / Chrome 桌面版浏览器。若浏览器不支持目录写入，可用「导出 works.json」备用方式：图片手动放入 `images/`，导出的文件放入 `data/`，再运行 sync.bat。
+> 提示：若双击 start.bat 没有反应，通常是旧版 Python 服务进程占用了端口，可先重启电脑，或直接双击 `resume-tools\editor.html`（效果完全一样）。
 
 ## ⚠️ 隐私说明（重要）
 
@@ -49,8 +49,8 @@
 
 ## start.bat 打不开的排查
 
-- 首次启动需等约 3 秒，浏览器会自动打开；若手动访问 `http://localhost:8735/resume-tools/editor.html` 仍打不开，请确认黑色服务窗口保持打开状态。
-- 若提示未检测到 Python：直接双击 `resume-tools/editor.html` 使用管理器（Chrome/Edge 支持），不影响任何功能。
+- 新版 start.bat 不依赖 Python，直接打开管理器；若仍未弹出，请直接双击 `resume-tools\editor.html`（效果一样）。
+- 若曾多次运行旧版 start.bat，可能有残留的 python 进程占着端口：在任务管理器结束所有 python.exe 进程，或重启电脑即可。
 
 ## 网站数据说明
 
