@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>彭基林 · 摄影师 / 剪辑师 / AI设计师</title>
+<meta name="description" content="彭基林 — 摄影师、剪辑师、AI设计师。摄影、视频剪辑与 AI 设计作品集，欢迎合作。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C1E38'/%3E%3Ctext x='32' y='43' font-size='30' text-anchor='middle' fill='%23E9F1FB' font-family='serif'%3E彭%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#071122;
+  --navy-900:#0A1B33;
+  --navy-800:#0E2340;
+  --ink:#1B2A44;
+  --ink-2:#45586F;
+  --ink-3:#74859E;
+  --bg:#F4F8FD;
+  --panel:#FFFFFF;
+  --soft:#E9F1FB;
+  --soft-2:#DFEAF7;
+  --line:#D8E5F3;
+  --accent:#2E6FDB;
+  --accent-deep:#1D4FA8;
+  --accent-soft:#E3EDFB;
+  --radius:12px;
+  --font-display:"Noto Serif SC","Source Han Serif SC","Songti SC","STZhongsong","SimSun",serif;
+  --font-body:"Noto Sans SC","PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  --shadow-sm:0 2px 10px rgba(14,35,64,.06);
+  --shadow-md:0 12px 32px rgba(14,35,64,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:#fff}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#C3D4E8;border-radius:8px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ===== 侧边栏 ===== */
+.sidebar{
+  position:fixed;inset:0 auto 0 0;width:270px;z-index:60;
+  background:linear-gradient(172deg,var(--navy-800) 0%,var(--navy-950) 80%);
+  color:#E9F1FB;display:flex;flex-direction:column;padding:36px 28px 24px;overflow-y:auto;
+}
+.brand{display:flex;align-items:center;gap:14px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.1)}
+.monogram{
+  width:50px;height:50px;flex:none;border-radius:10px;border:1px solid rgba(255,255,255,.25);
+  display:grid;place-items:center;font-family:var(--font-display);font-size:25px;color:#fff;background:rgba(255,255,255,.07);
+}
+.brand-name{font-family:var(--font-display);font-size:21px;font-weight:700;letter-spacing:.1em}
+.brand-sub{font-size:11.5px;color:rgba(233,241,251,.5);letter-spacing:.16em;margin-top:2px}
+.sidebar .role{font-size:14px;color:#fff;padding:18px 0 4px;letter-spacing:.06em}
+.sidebar .role-sub{font-size:12px;color:rgba(233,241,251,.55);line-height:1.9;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.contact-list{list-style:none;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:18px}
+.contact-list li{display:flex;align-items:center;gap:10px;font-size:12.5px;color:rgba(233,241,251,.8);margin-bottom:11px;word-break:break-all}
+.contact-list li:last-child{margin-bottom:0}
+.contact-list svg{width:14px;height:14px;flex:none;color:#9DB8E0}
+.contact-list a:hover{color:#fff}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav a{
+  display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;
+  font-size:13.5px;color:rgba(233,241,251,.65);letter-spacing:.08em;border-left:2px solid transparent;transition:all .25s;
+}
+.nav a .idx{font-size:11px;color:#9DB8E0;min-width:18px}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav a.active{color:#fff;background:rgba(46,111,219,.25);border-left-color:#5B93E8}
+.sidebar-foot{margin-top:auto;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;color:rgba(233,241,251,.4);letter-spacing:.1em}
+
+/* ===== 顶栏（移动端） ===== */
+.topbar{
+  display:none;position:fixed;top:0;left:0;right:0;z-index:70;
+  background:var(--navy-900);color:#fff;padding:13px 18px;align-items:center;justify-content:space-between;
+}
+.topbar .tb-name{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:17px;letter-spacing:.08em}
+.tb-mono{width:32px;height:32px;border:1px solid rgba(255,255,255,.3);border-radius:8px;display:grid;place-items:center;font-family:var(--font-display)}
+.menu-btn{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2)}
+.menu-btn svg{width:18px;height:18px;stroke:#fff}
+.drawer{
+  display:none;position:fixed;inset:58px 0 0 0;z-index:65;background:var(--navy-950);
+  flex-direction:column;padding:14px 20px 26px;transform:translateY(-8px);opacity:0;
+  transition:all .28s ease;pointer-events:none;overflow-y:auto;
+}
+.drawer.open{transform:none;opacity:1;pointer-events:auto}
+.drawer a{display:flex;align-items:center;gap:12px;padding:12px 10px;border-radius:8px;color:rgba(233,241,251,.78);font-size:14.5px}
+.drawer a .idx{font-family:var(--font-display);color:#9DB8E0;font-size:12px}
+.drawer a:hover,.drawer a.active{background:rgba(255,255,255,.06);color:#fff}
+.drawer .drawer-contact{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1);font-size:12.5px;color:rgba(233,241,251,.55);line-height:2.2}
+
+/* ===== 主内容 ===== */
+.main{margin-left:270px}
+.wrap{max-width:1020px;margin:0 auto;padding:0 40px}
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+section.soft{background:var(--soft)}
+.section-title{
+  font-family:var(--font-display);font-size:26px;font-weight:700;letter-spacing:.06em;color:var(--ink);
+  display:flex;align-items:center;gap:16px;margin-bottom:8px;
+}
+.section-title::after{content:"";flex:1;max-width:200px;height:1px;background:var(--line)}
+.section-desc{font-size:13.5px;color:var(--ink-2);margin-bottom:26px}
+
+/* 基本信息 */
+.basic{display:grid;grid-template-columns:1.25fr .75fr;gap:36px;align-items:center}
+.basic h1{font-family:var(--font-display);font-size:38px;font-weight:700;letter-spacing:.06em}
+.basic .role{margin-top:10px;font-size:15.5px;color:var(--ink-2);letter-spacing:.1em}
+.basic .lead{margin-top:16px;font-size:14px;color:var(--ink-2);max-width:520px;line-height:2}
+.basic .btns{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:9px;
+  font-size:13.5px;letter-spacing:.06em;font-weight:500;transition:all .25s;
+}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 18px rgba(46,111,219,.3)}
+.btn-primary:hover{background:var(--accent-deep)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink);background:var(--panel)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.info-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 26px;box-shadow:var(--shadow-sm);
+}
+.info-card h3{font-size:15px;font-weight:600;letter-spacing:.1em;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.info-card dl{display:grid;grid-template-columns:auto 1fr;gap:9px 18px;font-size:13.5px}
+.info-card dt{color:var(--ink-3);white-space:nowrap}
+.info-card dd{color:var(--ink);word-break:break-all}
+.info-card dd a:hover{color:var(--accent)}
+
+/* 作品集 */
+.works-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.works-count{font-size:12.5px;color:var(--ink-3)}
+.works-count b{color:var(--accent);font-size:16px;font-family:var(--font-display)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tab{
+  padding:9px 20px;border-radius:8px;border:1px solid var(--line);background:var(--panel);
+  font-size:13.5px;color:var(--ink-2);transition:all .25s;
+}
+.tab:hover{border-color:var(--accent);color:var(--accent)}
+.tab.active{background:var(--navy-800);color:#fff;border-color:var(--navy-800)}
+.subtabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:20px}
+.subtab{padding:6px 14px;border-radius:7px;font-size:13px;color:var(--ink-3);transition:all .2s}
+.subtab:hover{color:var(--accent)}
+.subtab.active{background:var(--accent-soft);color:var(--accent-deep);font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.card{
+  position:relative;border-radius:12px;overflow:hidden;background:var(--panel);
+  border:1px solid var(--line);cursor:pointer;transition:transform .3s,box-shadow .3s;
+  animation:cardIn .45s ease both;
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.card .c-img{aspect-ratio:4/3;overflow:hidden;position:relative;background:var(--soft)}
+.card.w16 .c-img{aspect-ratio:16/9}
+.card.w11 .c-img{aspect-ratio:1/1}
+.card .c-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .c-img img{transform:scale(1.05)}
+.card .c-tag{position:absolute;top:10px;left:10px;z-index:2;font-size:11px;padding:3px 10px;border-radius:99px;background:rgba(7,17,34,.6);color:#fff}
+.card .c-type{position:absolute;top:10px;right:10px;z-index:2;font-size:10.5px;padding:3px 9px;border-radius:5px;background:rgba(255,255,255,.92);color:var(--ink-2)}
+.card .c-mask{
+  position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:14px;background:linear-gradient(transparent 45%,rgba(7,17,34,.8));opacity:0;transition:opacity .3s;
+}
+.card:hover .c-mask{opacity:1}
+.card .c-mask h4{color:#fff;font-size:15px;font-weight:500}
+.card .c-mask p{color:rgba(233,241,251,.8);font-size:12px}
+.works-note{margin-top:16px;font-size:12px;color:var(--ink-3)}
+.works-note b{color:var(--accent-deep);font-weight:500}
+
+/* 技能 */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.skill-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 22px}
+.skill-card h3{font-size:16px;font-weight:600;letter-spacing:.05em;margin-bottom:4px}
+.skill-card .sk-sub{font-size:12px;color:var(--ink-3);margin-bottom:12px}
+.skill-card ul{list-style:none}
+.skill-card li{font-size:13px;color:var(--ink-2);padding:4.5px 0 4.5px 18px;position:relative}
+.skill-card li::before{content:"";position:absolute;left:2px;top:13px;width:5px;height:5px;border-radius:2px;background:var(--accent)}
+.skill-bars{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sb-top{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-2);margin-bottom:7px}
+.sb-top b{font-weight:600;color:var(--ink)}
+.sb-track{height:5px;border-radius:99px;background:var(--soft-2);overflow:hidden}
+.sb-fill{height:100%;border-radius:99px;background:var(--accent);width:0;transition:width 1s ease}
+.tools{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tools .tl{font-size:12px;color:var(--ink-3);margin-right:2px}
+.chip{font-size:12px;padding:5px 13px;border-radius:99px;background:var(--panel);border:1px solid var(--line);color:var(--ink-2)}
+
+/* 简介 */
+.about-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:start}
+.about-text p{font-size:14px;color:var(--ink-2);line-height:2.1;margin-bottom:14px}
+.about-text strong{color:var(--ink)}
+.strengths{display:grid;gap:10px;margin-top:6px}
+.strength{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;display:flex;gap:14px}
+.strength .s-ico{
+  width:36px;height:36px;flex:none;border-radius:9px;background:var(--accent-soft);color:var(--accent-deep);
+  display:grid;place-items:center;font-family:var(--font-display);font-size:15px;font-weight:700;
+}
+.strength h3{font-size:14.5px;font-weight:600;color:var(--ink)}
+.strength p{font-size:12.5px;color:var(--ink-2);line-height:1.8;margin-top:2px}
+
+/* 教育证书 */
+.edu-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:36px}
+.edu-col h3{font-size:15px;font-weight:600;letter-spacing:.08em;margin-bottom:16px;color:var(--ink)}
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl-item{position:relative;padding-bottom:26px;padding-left:16px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-26px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--panel);border:3px solid var(--accent)}
+.tl-item .tl-year{font-size:12px;color:var(--accent);letter-spacing:.12em;font-weight:600}
+.tl-item h4{font-size:15px;font-weight:600;margin-top:4px}
+.tl-item p{font-size:13px;color:var(--ink-2);margin-top:5px;line-height:1.9}
+.tl-item .ph{color:var(--ink-3);font-weight:400}
+.cert-list{display:grid;gap:10px}
+.cert{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:15px 18px}
+.cert .c-ico{
+  width:38px;height:38px;flex:none;border-radius:9px;background:var(--soft);color:var(--accent-deep);
+  display:grid;place-items:center;font-size:15px;
+}
+.cert h4{font-size:14px;font-weight:600}
+.cert p{font-size:12px;color:var(--ink-3);margin-top:2px}
+
+/* 联系 */
+.contact-panel{
+  border-radius:16px;padding:40px 44px;background:linear-gradient(135deg,var(--navy-800),var(--navy-950));
+  color:#E9F1FB;display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center;
+}
+.cp-title{font-family:var(--font-display);font-size:24px;letter-spacing:.06em}
+.cp-sub{margin-top:10px;font-size:13.5px;color:rgba(233,241,251,.7);line-height:2;max-width:430px}
+.cp-btns{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.btn-light{background:#fff;color:var(--navy-900)}
+.btn-light:hover{transform:translateY(-2px)}
+.btn-line{border:1px solid rgba(255,255,255,.35);color:#fff}
+.btn-line:hover{background:rgba(255,255,255,.1)}
+.cp-meta{display:grid;gap:10px}
+.cp-meta a{
+  display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:10px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  font-size:13px;color:#fff;transition:background .25s;
+}
+.cp-meta a:hover{background:rgba(255,255,255,.13)}
+.cp-meta svg{width:16px;height:16px;color:#9DB8E0;flex:none}
+.cp-meta .lbl{font-size:10.5px;color:rgba(233,241,251,.5);letter-spacing:.16em;display:block}
+.main-foot{padding:30px 0 40px;text-align:center;font-size:12px;color:var(--ink-3)}
+
+/* 灯箱 */
+.lightbox{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(7,17,34,.78);backdrop-filter:blur(6px)}
+.lightbox.open{display:flex;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.lb-panel{background:var(--panel);border-radius:16px;max-width:820px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.lb-img{position:relative;background:var(--soft)}
+.lb-img img{width:100%;max-height:58vh;object-fit:cover}
+.lb-tag{position:absolute;top:14px;left:14px;background:rgba(7,17,34,.6);color:#fff;font-size:11.5px;padding:4px 12px;border-radius:99px}
+.lb-close{
+  position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;
+  background:rgba(7,17,34,.55);color:#fff;display:grid;place-items:center;font-size:17px;transition:background .25s;
+}
+.lb-close:hover{background:var(--accent)}
+.lb-body{padding:24px 28px 28px}
+.lb-body h3{font-family:var(--font-display);font-size:21px;letter-spacing:.05em}
+.lb-sub{margin-top:3px;font-size:12px;color:var(--ink-3)}
+.lb-body p{margin-top:12px;font-size:13.5px;color:var(--ink-2);line-height:2}
+.lb-hint{margin-top:16px;font-size:11.5px;color:var(--ink-3);border-top:1px dashed var(--line);padding-top:12px}
+
+/* 回到顶部 */
+.to-top{
+  position:fixed;right:22px;bottom:22px;z-index:55;width:42px;height:42px;border-radius:50%;
+  background:var(--navy-800);color:#fff;display:grid;place-items:center;box-shadow:var(--shadow-md);
+  opacity:0;pointer-events:none;transform:translateY(10px);transition:all .3s;
+}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{background:var(--accent)}
+.to-top svg{width:17px;height:17px}
+
+/* 滚动显现 */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* 响应式 */
+@media (max-width:1020px){
+  .basic,.about-grid,.edu-wrap{grid-template-columns:1fr;gap:24px}
+  .contact-panel{grid-template-columns:1fr;padding:36px 30px}
+}
+@media (max-width:880px){
+  .sidebar{display:none}
+  .topbar{display:flex}
+  .drawer{display:flex}
+  .main{margin-left:0;padding-top:58px}
+  .wrap{padding:0 20px}
+  section{padding:48px 0}
+  .skills-grid,.skill-bars{grid-template-columns:1fr}
+  .basic h1{font-size:30px}
+}
+@media (max-width:520px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .tab{padding:8px 15px;font-size:13px}
+  .contact-panel{padding:30px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+@media print{
+  .sidebar,.topbar,.drawer,.to-top,.lightbox,.btns,.cp-btns{display:none !important}
+  .main{margin:0}
+  .wrap{max-width:100%;padding:0}
+  section{padding:20px 0;break-inside:avoid;border:none}
+  body{background:#fff}
+  .sb-fill{width:100% !important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 侧边栏（跳转导航） ===== -->
+<aside class="sidebar">
+  <div class="brand">
+    <div class="monogram">彭</div>
+    <div>
+      <div class="brand-name">彭基林</div>
+      <div class="brand-sub">PENG JILIN</div>
+    </div>
+  </div>
+  <div class="role">摄影师 · 剪辑师 · AI设计师</div>
+  <div class="role-sub">用镜头记录真实，用剪辑讲述故事，用 AI 拓展视觉表达的边界。</div>
+  <ul class="contact-list">
+    <li>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      <a href="mailto:3391848624@qq.com">3391848624@qq.com</a>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2.05z"/></svg>
+      <a href="tel:15666115928">156 6611 5928</a>
+    </li>
+  </ul>
+  <nav class="nav" aria-label="页面导航">
+    <a href="#top" data-spy="top"><span class="idx">01</span>基本信息</a>
+    <a href="#works" data-spy="works"><span class="idx">02</span>作品集</a>
+    <a href="#skills" data-spy="skills"><span class="idx">03</span>专业技能</a>
+    <a href="#about" data-spy="about"><span class="idx">04</span>个人简介</a>
+    <a href="#edu" data-spy="edu"><span class="idx">05</span>教育证书</a>
+    <a href="#contact" data-spy="contact"><span class="idx">06</span>联系我</a>
+  </nav>
+  <div class="sidebar-foot">AVAILABLE FOR WORK</div>
+</aside>
+
+<!-- ===== 顶栏（移动端） ===== -->
+<header class="topbar">
+  <div class="tb-name"><span class="tb-mono">彭</span>彭基林</div>
+  <button class="menu-btn" id="menuBtn" aria-label="打开菜单">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+</header>
+<nav class="drawer" id="drawer" aria-label="移动端导航">
+  <a href="#top" class="d-link"><span class="idx">01</span>基本信息</a>
+  <a href="#works" class="d-link"><span class="idx">02</span>作品集</a>
+  <a href="#skills" class="d-link"><span class="idx">03</span>专业技能</a>
+  <a href="#about" class="d-link"><span class="idx">04</span>个人简介</a>
+  <a href="#edu" class="d-link"><span class="idx">05</span>教育证书</a>
+  <a href="#contact" class="d-link"><span class="idx">06</span>联系我</a>
+  <div class="drawer-contact">3391848624@qq.com<br>156 6611 5928</div>
+</nav>
+
+<!-- ===== 主内容 ===== -->
+<div class="main">
+
+  <!-- 01 基本信息 -->
+  <section id="top" class="soft" style="padding-top:72px">
+    <div class="wrap">
+      <div class="basic">
+        <div class="reveal in">
+          <h1>彭基林</h1>
+          <div class="role">摄影师 · 剪辑师 · AI设计师</div>
+          <p class="lead">一名兼具影像审美与数字创作能力的视觉创作者，能够独立完成策划、拍摄、剪辑与 AI 视觉设计的全流程创作，为客户与合作伙伴交付有温度、有质感的作品。</p>
+          <div class="btns">
+            <a class="btn btn-primary" href="#works">查看作品集</a>
+            <a class="btn btn-ghost" href="#contact">联系合作</a>
+          </div>
+        </div>
+        <div class="info-card reveal in d1">
+          <h3>基本信息</h3>
+          <dl>
+            <dt>姓名</dt><dd>彭基林</dd>
+            <dt>职业方向</dt><dd>摄影 / 剪辑 / AI设计</dd>
+            <dt>邮箱</dt><dd><a href="mailto:3391848624@qq.com">3391848624@qq.com</a></dd>
+            <dt>电话</dt><dd><a href="tel:15666115928">156 6611 5928</a></dd>
+            <dt>合作方式</dt><dd>全职 / 项目制</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 作品集 -->
+  <section id="works">
+    <div class="wrap">
+      <div class="works-head">
+        <div>
+          <h2 class="section-title">作品集</h2>
+          <p class="section-desc" style="margin-bottom:0">摄影作品、视频剪辑与 AI 设计作品展示。</p>
+        </div>
+        <div class="works-count">共 <b id="totalCount">0</b> 件</div>
+      </div>
+      <div class="tabs" role="tablist" aria-label="作品分类">
+        <button class="tab active" data-tab="photo" role="tab">摄影作品</button>
+        <button class="tab" data-tab="video" role="tab">视频剪辑</button>
+        <button class="tab" data-tab="ai" role="tab">AI 设计</button>
+      </div>
+      <div class="subtabs" id="subTabs" role="tablist" aria-label="摄影子分类">
+        <button class="subtab active" data-sub="all">总览</button>
+        <button class="subtab" data-sub="landscape">风景</button>
+        <button class="subtab" data-sub="portrait">人像</button>
+        <button class="subtab" data-sub="doc">纪实</button>
+      </div>
+      <div class="grid" id="workGrid"></div>
+      <p class="works-note">* 当前为占位作品图，替换真实作品：图片放入 <b>images/</b> 目录并更新 <b>index.html</b> 中作品数据即可。</p>
+    </div>
+  </section>
+
+  <!-- 03 专业技能 -->
+  <section id="skills" class="soft">
+    <div class="wrap">
+      <h2 class="section-title">专业技能</h2>
+      <p class="section-desc">围绕影像创作全链路，构建摄影、剪辑与 AI 设计三大核心能力。</p>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <h3>摄影</h3>
+          <div class="sk-sub">影像的捕捉与塑造</div>
+          <ul>
+            <li>人像 / 风光 / 纪实等多题材拍摄</li>
+            <li>光影运用与构图美学</li>
+            <li>后期精修与色彩管理</li>
+            <li>现场光线把控与氛围营造</li>
+          </ul>
+        </div>
+        <div class="skill-card reveal d1">
+          <h3>视频剪辑</h3>
+          <div class="sk-sub">叙事与节奏的构建</div>
+          <ul>
+            <li>脚本策划与分镜设计</li>
+            <li>多机位剪辑与节奏把控</li>
+            <li>影视级调色与声音设计</li>
+            <li>动效包装与字幕规范</li>
+          </ul>
+        </div>
+        <div class="skill-card reveal d2">
+          <h3>AI 设计</h3>
+          <div class="sk-sub">创意与效率的融合</div>
+          <ul>
+            <li>AIGC 图像生成与精修</li>
+            <li>提示词工程与风格控制</li>
+            <li>AI 辅助海报 / 视觉设计</li>
+            <li>创意概念快速可视化</li>
+          </ul>
+        </div>
+      </div>
+      <div class="skill-bars">
+        <div>
+          <div class="sb-top"><span>摄影</span><b>90%</b></div>
+          <div class="sb-track"><div class="sb-fill" data-w="90%"></div></div>
+        </div>
+        <div>
+          <div class="sb-top"><span>视频剪辑</span><b>85%</b></div>
+          <div class="sb-track"><div class="sb-fill" data-w="85%"></div></div>
+        </div>
+        <div>
+          <div class="sb-top"><span>AI 设计</span><b>80%</b></div>
+          <div class="sb-track"><div class="sb-fill" data-w="80%"></div></div>
+        </div>
+      </div>
+      <div class="tools">
+        <span class="tl">常用工具</span>
+        <span class="chip">Photoshop</span>
+        <span class="chip">Lightroom</span>
+        <span class="chip">Premiere Pro</span>
+        <span class="chip">After Effects</span>
+        <span class="chip">DaVinci Resolve</span>
+        <span class="chip">Midjourney</span>
+        <span class="chip">Stable Diffusion</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 个人简介 -->
+  <section id="about">
+    <div class="wrap">
+      <h2 class="section-title">个人简介</h2>
+      <p class="section-desc">关于我的工作方式与核心优势。</p>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>你好，我是<strong>彭基林</strong>，一名摄影师、剪辑师与 AI 设计师。我擅长用镜头捕捉真实情绪，用剪辑构建叙事节奏，并用 AI 工具拓展创意的边界——<strong>从前期策划、现场拍摄，到后期剪辑与 AI 视觉设计，能够独立完成全流程创作</strong>。</p>
+          <p>我相信好的视觉作品不只是"好看"，更是沟通与表达。无论是商业项目还是个人创作，我都以专业与专注对待每一帧画面。</p>
+        </div>
+        <div class="strengths">
+          <div class="strength reveal">
+            <div class="s-ico">叙</div>
+            <div><h3>视觉叙事</h3><p>用光影、构图与节奏讲故事，让每一帧画面都有表达。</p></div>
+          </div>
+          <div class="strength reveal d1">
+            <div class="s-ico">全</div>
+            <div><h3>全流程制作</h3><p>策划、拍摄、剪辑、设计，一人贯通全链路，高效可控。</p></div>
+          </div>
+          <div class="strength reveal d2">
+            <div class="s-ico">AI</div>
+            <div><h3>创意 × AI</h3><p>熟练运用 AIGC 工具提升效率、放大想象。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 教育证书 -->
+  <section id="edu" class="soft">
+    <div class="wrap">
+      <h2 class="section-title">教育背景与证书</h2>
+      <p class="section-desc">教育经历与相关资质（「」内为待补充占位，请替换为真实信息）。</p>
+      <div class="edu-wrap">
+        <div class="edu-col">
+          <h3>教育经历</h3>
+          <div class="timeline">
+            <div class="tl-item reveal">
+              <div class="tl-year">本科</div>
+              <h4>「院校名称」<span class="ph">· 摄影 / 影视相关专业</span></h4>
+              <p>主修摄影与影视制作，系统学习构图、光影、剪辑与视觉设计，为创作打下扎实基础。</p>
+            </div>
+            <div class="tl-item reveal d1">
+              <div class="tl-year">持续学习</div>
+              <h4>「进修 / 培训经历」</h4>
+              <p>持续跟进 AI 设计、短视频创作等行业前沿技能，保持创作理念与工具能力的更新。</p>
+            </div>
+          </div>
+        </div>
+        <div class="edu-col">
+          <h3>证书资质</h3>
+          <div class="cert-list">
+            <div class="cert reveal">
+              <div class="c-ico">证</div>
+              <div><h4>「证书名称」</h4><p>颁发机构 · 年份</p></div>
+            </div>
+            <div class="cert reveal d1">
+              <div class="c-ico">证</div>
+              <div><h4>「证书名称」</h4><p>颁发机构 · 年份</p></div>
+            </div>
+            <div class="cert reveal d2">
+              <div class="c-ico">证</div>
+              <div><h4>「证书名称」</h4><p>颁发机构 · 年份</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 联系 -->
+  <section id="contact">
+    <div class="wrap">
+      <h2 class="section-title">联系我</h2>
+      <p class="section-desc">商业拍摄、视频制作或 AI 视觉设计项目，欢迎随时联系。</p>
+      <div class="contact-panel reveal">
+        <div>
+          <div class="cp-title">期待与您共创好作品</div>
+          <p class="cp-sub">无论是商业拍摄、视频制作，还是 AI 视觉设计项目，欢迎随时联系，我会尽快回复。</p>
+          <div class="cp-btns">
+            <a class="btn btn-light" href="mailto:3391848624@qq.com">发送邮件</a>
+            <a class="btn btn-line" href="tel:15666115928">电话联系</a>
+          </div>
+        </div>
+        <div class="cp-meta">
+          <a href="mailto:3391848624@qq.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span><span class="lbl">EMAIL</span>3391848624@qq.com</span>
+          </a>
+          <a href="tel:15666115928">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2.05z"/></svg>
+            <span><span class="lbl">PHONE</span>156 6611 5928</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="main-foot">© 2026 彭基林 · 摄影 / 剪辑 / AI 设计</footer>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="作品预览">
+  <div class="lb-panel">
+    <div class="lb-img">
+      <img id="lbImg" alt="作品大图">
+      <span class="lb-tag" id="lbTag"></span>
+      <button class="lb-close" id="lbClose" aria-label="关闭">✕</button>
+    </div>
+    <div class="lb-body">
+      <h3 id="lbTitle"></h3>
+      <div class="lb-sub" id="lbSub"></div>
+      <p id="lbDesc"></p>
+      <div class="lb-hint" id="lbHint"></div>
+    </div>
+  </div>
+</div>
+
+<button class="to-top" id="toTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+/* ================= 数据 ================= */
+const WORKS = {
+  photo: [
+    { id:'p1', cat:'风景', type:'摄影', title:'山间晨雾', sub:'Landscape · Dawn', desc:'清晨薄雾中的层叠山峦，冷调柔光，用大面积留白营造呼吸感与静谧氛围。', img:'images/photo-landscape-1.jpg', art:'dawn-mountains' },
+    { id:'p2', cat:'风景', type:'摄影', title:'海岸日落', sub:'Landscape · Golden Hour', desc:'海岸礁石与长曝光海浪，暖金与深蓝交织，呈现自然最动人的色彩时刻。', img:'images/photo-landscape-2.jpg', art:'sunset-waves' },
+    { id:'p3', cat:'风景', type:'摄影', title:'蓝调城市', sub:'Landscape · Blue Hour', desc:'蓝调时刻的城市天际线，灯火初上，现代建筑在深蓝天空下形成利落剪影。', img:'images/photo-landscape-3.jpg', art:'city-blue' },
+    { id:'p4', cat:'人像', type:'摄影', title:'窗边的光', sub:'Portrait · Natural Light', desc:'利用窗边自然侧光勾勒轮廓，浅景深虚化背景，捕捉安静而克制的情绪。', img:'images/photo-portrait-1.jpg', art:'window-light' },
+    { id:'p5', cat:'人像', type:'摄影', title:'街头瞬间', sub:'Portrait · Street', desc:'在真实城市环境中捕捉自然状态，光影与人物状态形成耐人寻味的画面。', img:'images/photo-portrait-2.jpg', art:'street-figure' },
+    { id:'p6', cat:'人像', type:'摄影', title:'黑白情绪', sub:'Portrait · Monochrome', desc:'以黑白影调剥离色彩干扰，聚焦人物神态与光影层次，表达纯粹情绪。', img:'images/photo-portrait-3.jpg', art:'mood-duotone' },
+    { id:'p7', cat:'纪实', type:'摄影', title:'市集烟火', sub:'Documentary · Life', desc:'深入市井日常，记录真实的人间烟火气，让瞬间成为故事。', img:'images/photo-doc-1.jpg', art:'market-life' },
+    { id:'p8', cat:'纪实', type:'摄影', title:'老城巷弄', sub:'Documentary · Town', desc:'行走于老城街巷，用镜头留存时间痕迹与在地生活的温度。', img:'images/photo-doc-2.jpg', art:'alley-walk' },
+    { id:'p9', cat:'纪实', type:'摄影', title:'手艺人', sub:'Documentary · Craft', desc:'聚焦匠人专注的双手与神情，呈现职业与技艺背后的坚守。', img:'images/photo-doc-3.jpg', art:'craftsman' }
+  ],
+  video: [
+    { id:'v1', cat:'视频', type:'剪辑', title:'《山与海》旅行短片', sub:'Travel Film · 3min', desc:'一支关于山与海的旅行短片，负责全程拍摄、剪辑与调色，用节奏与转场讲述旅程故事。', img:'images/video-1.jpg', art:'film-travel' },
+    { id:'v2', cat:'视频', type:'剪辑', title:'《质感》品牌宣传片', sub:'Brand Film · 1min30s', desc:'品牌形象宣传片，涵盖脚本策划、多机位剪辑、调色与声音设计，突出产品质感与品牌气质。', img:'images/video-2.jpg', art:'film-brand' },
+    { id:'v3', cat:'视频', type:'剪辑', title:'《声浪》音乐 MV', sub:'Music Video · 4min', desc:'音乐 MV 的剪辑与特效包装，以音乐节拍驱动画面节奏，探索视听结合的更多可能。', img:'images/video-3.jpg', art:'film-music' }
+  ],
+  ai: [
+    { id:'a1', cat:'AI', type:'AI设计', title:'未来城市 · 概念海报', sub:'AIGC · Concept Art', desc:'以 AIGC 生成未来城市概念画面，通过提示词工程控制风格与光影，用于创意提案与视觉探索。', img:'images/ai-1.jpg', art:'ai-city' },
+    { id:'a2', cat:'AI', type:'AI设计', title:'国风数字插画', sub:'AIGC · Illustration', desc:'融合东方美学元素的数字插画创作，AI 生成结合后期精修，输出完整设计画面。', img:'images/ai-2.jpg', art:'ai-ink' },
+    { id:'a3', cat:'AI', type:'AI设计', title:'品牌视觉延展', sub:'AIGC · Brand Visual', desc:'基于品牌调性的 AI 视觉延展设计，快速产出多风格方案，辅助品牌创意决策。', img:'images/ai-3.jpg', art:'ai-poster' }
+  ]
+};
+let curTab='photo', curSub='all';
+
+/* ================= SVG 艺术占位图 ================= */
+function seedRand(n){return function(){n|=0;n=n+0x6D2B79F5|0;let t=Math.imul(n^n>>>15,1|n);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function svgURI(s){return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s)}
+function artFor(key){
+  const W=800,H=600;
+  const defs={
+    'dawn-mountains':{c1:'#2E5C8A',c2:'#B9D4EC',motif:'mountains'},
+    'sunset-waves':{c1:'#1B3A5C',c2:'#F2A65A',motif:'sunwaves'},
+    'city-blue':{c1:'#0E2340',c2:'#3A6EA5',motif:'city'},
+    'window-light':{c1:'#F3E9DC',c2:'#A9BFD8',motif:'window'},
+    'street-figure':{c1:'#C89B7A',c2:'#2B3A4A',motif:'street'},
+    'mood-duotone':{c1:'#3A3F4A',c2:'#0F1116',motif:'figure'},
+    'market-life':{c1:'#7A5C3E',c2:'#E8C99A',motif:'bunting'},
+    'alley-walk':{c1:'#4A5568',c2:'#1F2937',motif:'alley'},
+    'craftsman':{c1:'#5C4033',c2:'#D8B48C',motif:'hands'},
+    'film-travel':{c1:'#1D3557',c2:'#5FA8D3',motif:'play'},
+    'film-brand':{c1:'#14213D',c2:'#8D99AE',motif:'frame'},
+    'film-music':{c1:'#232526',c2:'#414345',motif:'equalizer'},
+    'ai-city':{c1:'#0B132B',c2:'#4B6CB7',motif:'orbits'},
+    'ai-ink':{c1:'#2F4858',c2:'#E7D8B5',motif:'ink'},
+    'ai-poster':{c1:'#1A2980',c2:'#26D0CE',motif:'poster'}
+  };
+  const d=defs[key]||defs['dawn-mountains'];
+  const rnd=seedRand(key.length*97+7);
+  let body='';
+  if(d.motif==='mountains'){
+    const cols=['#24456B','#17345A','#0D2344'];
+    body='<circle cx="580" cy="190" r="70" fill="rgba(255,244,214,.85)"/>';
+    const pk=[[0,420],[200,300],[400,430],[620,290],[800,410]];
+    for(let i=0;i<3;i++){
+      let pts='';
+      for(let j=0;j<pk.length;j++){const y=pk[j][1]+i*46+rnd()*22;pts+=(j?',':'')+pk[j][0]+','+y}
+      body+='<polygon points="0,'+H+' '+pts+' '+W+','+H+'" fill="'+cols[i]+'" opacity="'+(0.92-i*0.14)+'"/>';
+    }
+  }else if(d.motif==='sunwaves'){
+    body='<circle cx="430" cy="300" r="150" fill="rgba(255,214,140,.9)"/>';
+    for(let i=0;i<7;i++){
+      const y=330+i*40, amp=26+i*4;
+      let path='M0,'+y;const st=rnd()*20;
+      for(let x=0;x<=W;x+=25){path+=' Q'+(x+12.5)+','+(y+((x/25+st)%2?amp:-amp))+' '+x+','+y}
+      body+='<path d="'+path+'" fill="none" stroke="rgba(20,52,90,'+(0.85-i*0.1)+')" stroke-width="3"/>';
+    }
+  }else if(d.motif==='city'){
+    for(let i=0;i<16;i++){
+      const bw=30+rnd()*46, x=i*(W/16), bh=120+rnd()*240;
+      body+='<rect x="'+x+'" y="'+(H-bh)+'" width="'+bw+'" height="'+bh+'" fill="#0B1B33" opacity="'+(0.55+rnd()*0.4)+'"/>';
+      for(let wy=H-bh+22;wy<H-18;wy+=34)for(let wx=x+8;wx<x+bw-10;wx+=16)if(rnd()>.55)body+='<rect x="'+wx+'" y="'+wy+'" width="5" height="7" fill="#FFD98E" opacity="'+rnd()+'"/>';
+    }
+    body+='<circle cx="640" cy="150" r="64" fill="rgba(255,244,214,.75)"/>';
+  }else if(d.motif==='window'){
+    body+='<rect x="96" y="70" width="300" height="430" rx="6" fill="rgba(255,255,255,.6)"/>';
+    body+='<rect x="96" y="70" width="300" height="430" rx="6" fill="none" stroke="rgba(70,90,120,.55)" stroke-width="10"/>';
+    body+='<line x1="246" y1="70" x2="246" y2="500" stroke="rgba(70,90,120,.55)" stroke-width="10"/>';
+    body+='<line x1="96" y1="285" x2="396" y2="285" stroke="rgba(70,90,120,.55)" stroke-width="10"/>';
+    body+='<circle cx="320" cy="360" r="52" fill="rgba(46,80,120,.5)"/>';
+    body+='<ellipse cx="300" cy="430" rx="96" ry="120" fill="rgba(30,50,75,.55)"/>';
+  }else if(d.motif==='street'){
+    body+='<polygon points="0,600 320,0 480,0 800,600" fill="rgba(15,23,42,.5)"/>';
+    for(let i=0;i<14;i++){
+      const t=i/13, x0=320+(i-6)*30;
+      body+='<line x1="'+x0+'" y1="0" x2="'+(x0+(i-6)*6)+'" y2="600" stroke="rgba(240,230,210,'+(0.5-t*0.28)+')" stroke-width="2"/>';
+    }
+    body+='<ellipse cx="470" cy="430" rx="70" ry="130" fill="rgba(10,16,26,.75)"/>';
+    body+='<circle cx="470" cy="290" r="34" fill="rgba(10,16,26,.7)"/>';
+  }else if(d.motif==='figure'){
+    body+='<defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6E7684"/><stop offset="1" stop-color="#16181D"/></linearGradient></defs>';
+    body+='<circle cx="400" cy="270" r="95" fill="url(#hg)"/>';
+    body+='<path d="M230,600 C250,430 330,380 400,380 C470,380 550,430 570,600 Z" fill="url(#hg)"/>';
+  }else if(d.motif==='bunting'){
+    for(let i=0;i<10;i++){
+      const x=i*(W/9.5)+rnd()*18;
+      body+='<path d="M'+x+',120 L'+(x+30)+',120 L'+(x+15)+',170 Z" fill="rgba(70,45,25,'+(0.5+rnd()*0.35)+')"/>';
+    }
+    body+='<rect x="0" y="320" width="800" height="280" fill="rgba(60,38,20,.55)"/>';
+    body+='<ellipse cx="640" cy="420" rx="150" ry="110" fill="rgba(30,18,10,.8)"/>';
+    body+='<circle cx="120" cy="200" r="46" fill="rgba(255,224,170,.55)"/>';
+  }else if(d.motif==='alley'){
+    body+='<polygon points="0,600 330,0 470,0 800,600" fill="rgba(10,14,20,.62)"/>';
+    body+='<rect x="120" y="0" width="70" height="600" fill="rgba(70,84,102,.5)"/>';
+    body+='<rect x="620" y="0" width="80" height="600" fill="rgba(70,84,102,.5)"/>';
+    for(let i=0;i<8;i++)body+='<rect x="150" y="'+(60+i*80)+'" width="28" height="40" rx="4" fill="rgba(255,214,140,'+(0.25+rnd()*0.3)+')"/>';
+    body+='<ellipse cx="420" cy="520" rx="60" ry="90" fill="rgba(8,12,18,.7)"/>';
+  }else if(d.motif==='hands'){
+    body+='<ellipse cx="400" cy="300" rx="190" ry="150" fill="rgba(40,24,14,.4)"/>';
+    body+='<circle cx="340" cy="280" r="42" fill="rgba(60,38,22,.5)"/>';
+    body+='<circle cx="470" cy="260" r="46" fill="rgba(60,38,22,.5)"/>';
+    body+='<rect x="380" y="300" width="70" height="150" rx="26" fill="rgba(52,33,18,.55)"/>';
+  }else if(d.motif==='play'){
+    body+='<rect x="270" y="180" width="260" height="170" rx="16" fill="rgba(10,22,38,.72)"/>';
+    body+='<polygon points="370,225 370,305 445,265" fill="rgba(240,248,255,.92)"/>';
+    for(let i=0;i<5;i++)body+='<rect x="0" y="'+(420+i*36)+'" width="800" height="14" fill="rgba(255,255,255,'+(0.1+i*0.035)+')"/>';
+  }else if(d.motif==='frame'){
+    body+='<rect x="120" y="120" width="560" height="320" fill="none" stroke="rgba(240,244,250,.75)" stroke-width="6"/>';
+    body+='<rect x="140" y="140" width="520" height="280" fill="rgba(20,33,61,.6)"/>';
+    body+='<circle cx="400" cy="280" r="70" fill="rgba(240,244,250,.22)"/>';
+    body+='<circle cx="400" cy="280" r="110" fill="none" stroke="rgba(240,244,250,.3)" stroke-width="2"/>';
+  }else if(d.motif==='equalizer'){
+    for(let i=0;i<9;i++){
+      const h=60+rnd()*200, x=170+i*52;
+      body+='<rect x="'+x+'" y="'+(430-h)+'" width="30" height="'+h+'" rx="6" fill="rgba(200,220,240,'+(0.35+rnd()*0.4)+')"/>';
+    }
+    body+='<circle cx="400" cy="150" r="60" fill="rgba(255,255,255,.16)"/>';
+  }else if(d.motif==='orbits'){
+    body+='<circle cx="400" cy="300" r="150" fill="rgba(80,120,230,.4)"/>';
+    for(let i=0;i<4;i++){
+      const r=190+i*52, rot=rnd()*360;
+      body+='<ellipse cx="400" cy="300" rx="'+r+'" ry="'+(r*0.42)+'" fill="none" stroke="rgba(150,190,255,'+(0.5-i*0.09)+')" stroke-width="2" transform="rotate('+rot+' 400 300)"/>';
+    }
+    for(let i=0;i<22;i++){
+      const a=rnd()*6.283, r=190+rnd()*300;
+      body+='<circle cx="'+(400+Math.cos(a)*r)+'" cy="'+(300+Math.sin(a)*r*0.5)+'" r="'+(2+rnd()*4)+'" fill="rgba(220,235,255,'+(0.3+rnd()*0.5)+')"/>';
+    }
+  }else if(d.motif==='ink'){
+    body+='<circle cx="400" cy="280" r="150" fill="rgba(15,32,44,.55)"/>';
+    body+='<circle cx="470" cy="230" r="90" fill="rgba(231,216,181,.25)"/>';
+    for(let i=0;i<8;i++){
+      const a=i*0.785+rnd()*0.3;
+      body+='<path d="M400,280 q'+(70+rnd()*90)+','+((rnd()>.5?-1:1)*(40+rnd()*110))+' '+(140+rnd()*160)+',0" fill="none" stroke="rgba(20,40,52,'+(0.4+rnd()*0.4)+')" stroke-width="'+(2+rnd()*5)+'" stroke-linecap="round"/>';
+    }
+  }else if(d.motif==='poster'){
+    body+='<polygon points="800,0 400,0 800,400" fill="rgba(255,255,255,.14)"/>';
+    body+='<circle cx="300" cy="300" r="130" fill="rgba(255,255,255,.2)"/>';
+    body+='<circle cx="300" cy="300" r="70" fill="rgba(10,20,50,.5)"/>';
+    for(let i=0;i<5;i++)body+='<rect x="120" y="'+(440+i*26)+'" width="'+(200+rnd()*180)+'" height="10" rx="5" fill="rgba(255,255,255,'+(0.3+i*0.08)+')"/>';
+  }
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'">'
+    +'<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+d.c1+'"/><stop offset="1" stop-color="'+d.c2+'"/></linearGradient></defs>'
+    +'<rect width="'+W+'" height="'+H+'" fill="url(#bg)"/>'
+    +body+'</svg>';
+  return svgURI(svg);
+}
+
+/* ================= 渲染作品 ================= */
+const grid=document.getElementById('workGrid');
+const totalCount=document.getElementById('totalCount');
+const lb=document.getElementById('lightbox');
+
+function visibleWorks(){
+  if(curTab!=='photo') return WORKS[curTab];
+  if(curSub==='all') return WORKS.photo;
+  const map={'landscape':'风景','portrait':'人像','doc':'纪实'};
+  return WORKS.photo.filter(w=>w.cat===map[curSub]);
+}
+function renderGrid(){
+  const list=visibleWorks();
+  totalCount.textContent=list.length;
+  const wc=curTab==='video'?'w16':(curTab==='ai'?'w11':'w43');
+  grid.innerHTML=list.map((w,i)=>{
+    const art=artFor(w.art);
+    return '<div class="card '+wc+'" style="animation-delay:'+(i*0.04)+'s" data-id="'+w.id+'">'
+      +'<div class="c-img">'
+      +'<img src="'+w.img+'" alt="'+w.title+'" loading="lazy" data-art="'+art+'">'
+      +'<span class="c-tag">'+w.cat+'</span>'
+      +'<span class="c-type">'+w.type+'</span>'
+      +'<div class="c-mask"><h4>'+w.title+'</h4><p>'+w.sub+'</p></div>'
+      +'</div></div>';
+  }).join('');
+  grid.querySelectorAll('img').forEach(img=>{
+    img.addEventListener('error',function(){this.onerror=null;this.src=this.dataset.art});
+    if(img.complete&&img.naturalWidth===0){img.src=img.dataset.art}
+  });
+  grid.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('click',()=>openLb(card.dataset.id));
+  });
+}
+function findWork(id){for(const k in WORKS){const f=WORKS[k].find(w=>w.id===id);if(f)return f}return null}
+function openLb(id){
+  const w=findWork(id);if(!w)return;
+  const img=document.getElementById('lbImg');
+  img.src=w.img;
+  const art=artFor(w.art);
+  img.onerror=function(){this.onerror=null;this.src=art};
+  if(img.complete&&img.naturalWidth===0)img.src=art;
+  document.getElementById('lbTag').textContent=w.cat+' · '+w.type;
+  document.getElementById('lbTitle').textContent=w.title;
+  document.getElementById('lbSub').textContent=w.sub;
+  document.getElementById('lbDesc').textContent=w.desc;
+  document.getElementById('lbHint').textContent='提示：此为占位作品图。替换真实作品：图片保存至 images/ 目录，并更新 index.html 作品数据中的文件名。';
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLb(){lb.classList.remove('open');document.body.style.overflow=''}
+document.getElementById('lbClose').addEventListener('click',closeLb);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
+
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    curTab=tab.dataset.tab;
+    document.getElementById('subTabs').style.display=curTab==='photo'?'flex':'none';
+    renderGrid();
+  });
+});
+document.querySelectorAll('.subtab').forEach(st=>{
+  st.addEventListener('click',()=>{
+    document.querySelectorAll('.subtab').forEach(s=>s.classList.remove('active'));
+    st.classList.add('active');
+    curSub=st.dataset.sub;
+    renderGrid();
+  });
+});
+
+/* ================= 滚动效果 ================= */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const io2=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){const f=en.target.querySelector('.sb-fill');if(f)f.style.width=f.dataset.w;io2.unobserve(en.target)}
+  });
+},{threshold:.3});
+document.querySelectorAll('.skill-bars>div').forEach(el=>io2.observe(el));
+const spyIo=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(!en.isIntersecting)return;
+    const id=en.target.id;
+    document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.dataset.spy===id));
+    document.querySelectorAll('.drawer a').forEach(a=>a.classList.toggle('active',a.dataset.spy===id));
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section[id]').forEach(sec=>spyIo.observe(sec));
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>{toTop.classList.toggle('show',window.scrollY>500)},{passive:true});
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const drawer=document.getElementById('drawer'),menuBtn=document.getElementById('menuBtn');
+menuBtn.addEventListener('click',()=>drawer.classList.toggle('open'));
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>drawer.classList.remove('open')));
+
+renderGrid();
+</script>
+</body>
+</html>

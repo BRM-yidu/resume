@@ -1,0 +1,19 @@
+{
+  "works": [
+    { "id": "p1", "cat": "风景", "type": "摄影", "title": "山间晨雾", "sub": "LANDSCAPE · DAWN", "desc": "清晨薄雾中的层叠山峦，冷调柔光，用大面积留白营造呼吸感与静谧氛围。", "img": "images/photo-landscape-1.jpg", "art": "dawn-mountains" },
+    { "id": "p2", "cat": "风景", "type": "摄影", "title": "海岸日落", "sub": "LANDSCAPE · GOLDEN HOUR", "desc": "海岸礁石与长曝光海浪，暖金与深蓝交织，呈现自然最动人的色彩时刻。", "img": "images/photo-landscape-2.jpg", "art": "sunset-waves" },
+    { "id": "p3", "cat": "风景", "type": "摄影", "title": "蓝调城市", "sub": "LANDSCAPE · BLUE HOUR", "desc": "蓝调时刻的城市天际线，灯火初上，现代建筑在深蓝天空下形成利落剪影。", "img": "images/photo-landscape-3.jpg", "art": "city-blue" },
+    { "id": "p4", "cat": "人像", "type": "摄影", "title": "窗边的光", "sub": "PORTRAIT · NATURAL LIGHT", "desc": "利用窗边自然侧光勾勒轮廓，浅景深虚化背景，捕捉安静而克制的情绪。", "img": "images/photo-portrait-1.jpg", "art": "window-light" },
+    { "id": "p5", "cat": "人像", "type": "摄影", "title": "街头瞬间", "sub": "PORTRAIT · STREET", "desc": "在真实城市环境中捕捉自然状态，光影与人物状态形成耐人寻味的画面。", "img": "images/photo-portrait-2.jpg", "art": "street-figure" },
+    { "id": "p6", "cat": "人像", "type": "摄影", "title": "黑白情绪", "sub": "PORTRAIT · MONOCHROME", "desc": "以黑白影调剥离色彩干扰，聚焦人物神态与光影层次，表达纯粹情绪。", "img": "images/photo-portrait-3.jpg", "art": "mood-duotone" },
+    { "id": "p7", "cat": "纪实", "type": "摄影", "title": "市集烟火", "sub": "DOCUMENTARY · LIFE", "desc": "深入市井日常，记录真实的人间烟火气，让瞬间成为故事。", "img": "images/photo-doc-1.jpg", "art": "market-life" },
+    { "id": "p8", "cat": "纪实", "type": "摄影", "title": "老城巷弄", "sub": "DOCUMENTARY · TOWN", "desc": "行走于老城街巷，用镜头留存时间痕迹与在地生活的温度。", "img": "images/photo-doc-2.jpg", "art": "alley-walk" },
+    { "id": "p9", "cat": "纪实", "type": "摄影", "title": "手艺人", "sub": "DOCUMENTARY · CRAFT", "desc": "聚焦匠人专注的双手与神情，呈现职业与技艺背后的坚守。", "img": "images/photo-doc-3.jpg", "art": "craftsman" },
+    { "id": "v1", "cat": "视频", "type": "剪辑", "title": "《山与海》旅行短片", "sub": "TRAVEL FILM · 3MIN", "desc": "一支关于山与海的旅行短片，负责全程拍摄、剪辑与调色，用节奏与转场讲述旅程故事。", "img": "images/video-1.jpg", "art": "film-travel" },
+    { "id": "v2", "cat": "视频", "type": "剪辑", "title": "《质感》品牌宣传片", "sub": "BRAND FILM · 1MIN30S", "desc": "品牌形象宣传片，涵盖脚本策划、多机位剪辑、调色与声音设计，突出产品质感与品牌气质。", "img": "images/video-2.jpg", "art": "film-brand" },
+    { "id": "v3", "cat": "视频", "type": "剪辑", "title": "《声浪》音乐 MV", "sub": "MUSIC VIDEO · 4MIN", "desc": "音乐 MV 的剪辑与特效包装，以音乐节拍驱动画面节奏，探索视听结合的更多可能。", "img": "images/video-3.jpg", "art": "film-music" },
+    { "id": "a1", "cat": "AI设计", "type": "AI设计", "title": "未来城市 · 概念海报", "sub": "AIGC · CONCEPT ART", "desc": "以 AIGC 生成未来城市概念画面，通过提示词工程控制风格与光影，用于创意提案与视觉探索。", "img": "images/ai-1.jpg", "art": "ai-city" },
+    { "id": "a2", "cat": "AI设计", "type": "AI设计", "title": "国风数字插画", "sub": "AIGC · ILLUSTRATION", "desc": "融合东方美学元素的数字插画创作，AI 生成结合后期精修，输出完整设计画面。", "img": "images/ai-2.jpg", "art": "ai-ink" },
+    { "id": "a3", "cat": "AI设计", "type": "AI设计", "title": "品牌视觉延展", "sub": "AIGC · BRAND VISUAL", "desc": "基于品牌调性的 AI 视觉延展设计，快速产出多风格方案，辅助品牌创意决策。", "img": "images/ai-3.jpg", "art": "ai-poster" }
+  ]
+}

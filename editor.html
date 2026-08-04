@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品管理器 · YIDU-彭</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C0E12'/%3E%3Ctext x='32' y='43' font-size='28' text-anchor='middle' fill='%23F2EFE9' font-family='serif'%3EY%3C/text%3E%3C/svg%3E">
+<style>
+:root{--ink:#0C0E12;--ink2:#13161C;--ink3:#1B1F27;--paper:#F2EFE9;--dim:rgba(242,239,233,.62);--faint:rgba(242,239,233,.38);--gold:#C9A86A;--line:rgba(242,239,233,.12);--ok:#7FB77E;--err:#D98E73}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--paper);font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7;padding:28px 20px 60px;max-width:1080px;margin:0 auto}
+h1{font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-weight:500;letter-spacing:.08em;font-size:24px}
+h1 em{font-style:normal;color:var(--gold)}
+.sub{font-size:12px;color:var(--faint);letter-spacing:.1em;margin-top:6px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:22px 0 8px}
+button{
+  font-family:inherit;cursor:pointer;border:1px solid var(--line);background:var(--ink2);color:var(--paper);
+  padding:10px 18px;border-radius:8px;font-size:13px;letter-spacing:.06em;transition:all .25s;
+}
+button:hover{border-color:var(--gold);color:var(--gold)}
+button:disabled{opacity:.4;cursor:not-allowed;border-color:var(--line);color:var(--dim)}
+button.primary{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+button.primary:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.status{font-size:12px;color:var(--dim);margin-left:4px;letter-spacing:.05em}
+.status.ok{color:var(--ok)}
+.status.err{color:var(--err)}
+#dropZone{
+  margin:14px 0 26px;border:2px dashed var(--line);border-radius:14px;padding:44px 20px;text-align:center;
+  color:var(--dim);font-size:14px;letter-spacing:.1em;transition:all .3s;cursor:pointer;background:var(--ink2);
+}
+#dropZone.drag{border-color:var(--gold);color:var(--gold);background:var(--ink3)}
+#dropZone .big{font-size:15px;color:var(--paper);margin-bottom:6px}
+.hint{font-size:11.5px;color:var(--faint);margin-top:8px}
+.item{
+  display:grid;grid-template-columns:120px 1fr auto;gap:16px;background:var(--ink2);
+  border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px;align-items:start;
+}
+.item .thumb{width:120px;height:120px;border-radius:8px;overflow:hidden;background:var(--ink3);display:grid;place-items:center}
+.item .thumb img{width:100%;height:100%;object-fit:cover}
+.item .thumb .ph{font-size:11px;color:var(--faint);text-align:center;padding:8px}
+.item .meta{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+.item .meta .full{grid-column:1/-1}
+label{display:block;font-size:11px;color:var(--faint);letter-spacing:.14em;margin-bottom:4px}
+input,select,textarea{
+  width:100%;background:var(--ink);border:1px solid var(--line);border-radius:7px;color:var(--paper);
+  padding:8px 10px;font-size:13px;font-family:inherit;outline:none;transition:border .2s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+textarea{resize:vertical;min-height:52px}
+.item .ops{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.item .ops button{padding:7px 12px;font-size:12px}
+.item .ops .rm{color:var(--err)}
+.fname{font-size:11px;color:var(--faint);word-break:break-all;grid-column:1/-1}
+.fname b{color:var(--gold);font-weight:400}
+.footer{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;align-items:center}
+#summary{margin-top:18px;font-size:13px;line-height:2;color:var(--dim);white-space:pre-line}
+#summary b{color:var(--gold);font-weight:400}
+@media (max-width:720px){.item{grid-template-columns:1fr}.item .thumb{width:100%;height:auto;aspect-ratio:4/3}.item .ops{flex-direction:row;align-items:center}}
+</style>
+</head>
+<body>
+<h1>作品管理器 <em>· YIDU-彭</em></h1>
+<div class="sub">在本机添加 / 修改 / 删除作品 → 保存 → 双击 sync.bat 一键上传到网站</div>
+
+<div class="toolbar">
+  <button id="connectBtn">① 连接网站目录</button>
+  <span class="status" id="dirStatus">未连接（点击按钮选择 resume 文件夹）</span>
+</div>
+<div class="toolbar">
+  <button id="saveBtn" class="primary" disabled>② 保存并生成 works.json</button>
+  <button id="exportBtn">导出 works.json（备用）</button>
+</div>
+
+<div id="dropZone">
+  <div class="big">把作品图片拖到这里，或点击选择</div>
+  <div>支持多选：JPG / PNG / WebP</div>
+  <div class="hint">新图片会复制到网站的 images/ 文件夹，无需手动改名</div>
+</div>
+<input type="file" id="fileInput" multiple accept="image/*" style="display:none">
+
+<div id="list"></div>
+
+<div class="footer">
+  <span class="status" id="saveStatus"></span>
+</div>
+<div id="summary"></div>
+
+<script>
+let dirHandle=null, imagesDir=null, dataDir=null;
+let items=[]; // {key, file|null, existing, img, art, cat, title, sub, desc}
+let keySeq=1;
+const CATS=['风景','人像','纪实','视频','AI设计'];
+const TYPE_MAP={'风景':'摄影','人像':'摄影','纪实':'摄影','视频':'剪辑','AI设计':'AI设计'};
+const d=document;
+
+/* ---------- 拖拽 / 选择 ---------- */
+const dz=d.getElementById('dropZone'), fi=d.getElementById('fileInput');
+dz.addEventListener('click',()=>fi.click());
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag')});
+dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');addFiles(e.dataTransfer.files)});
+fi.addEventListener('change',()=>{addFiles(fi.files);fi.value=''});
+function addFiles(files){
+  for(const f of files){
+    if(!f.type.startsWith('image/'))continue;
+    items.push({key:keySeq++,file:f,existing:false,img:'',art:'',cat:'风景',title:baseName(f.name),sub:'',desc:''});
+  }
+  render();
+}
+function baseName(n){return n.replace(/\.[^.]+$/,'')}
+
+/* ---------- 渲染 ---------- */
+function render(){
+  const box=d.getElementById('list');
+  box.innerHTML='';
+  items.forEach((it,idx)=>{
+    const el=d.createElement('div');
+    el.className='item';
+    el.innerHTML=`
+      <div class="thumb">${it.thumb?('<img src="'+it.thumb+'">'):'<span class="ph">图片预览</span>'}</div>
+      <div class="meta">
+        <div><label>分类</label><select data-k="cat">${CATS.map(c=>'<option'+(c===it.cat?' selected':'')+'>'+c+'</option>').join('')}</select></div>
+        <div><label>标题</label><input data-k="title" value="${esc(it.title)}" placeholder="作品标题"></div>
+        <div class="full"><label>英文小标（可选）</label><input data-k="sub" value="${esc(it.sub)}" placeholder="如 LANDSCAPE · DAWN，留空自动生成"></div>
+        <div class="full"><label>作品描述（可选）</label><textarea data-k="desc" placeholder="用一句话介绍这张作品">${esc(it.desc)}</textarea></div>
+        <div class="fname">文件：<b>${esc(it.file?it.file.name:(it.img||'（来自 works.json）'))}</b>${it.existing?'（已存在于网站）':''}</div>
+      </div>
+      <div class="ops">
+        <button data-op="up" ${idx===0?'disabled':''}>↑</button>
+        <button data-op="down" ${idx===items.length-1?'disabled':''}>↓</button>
+        <button data-op="replace">换图</button>
+        <button data-op="del" class="rm">删除</button>
+      </div>`;
+    if(it.file){it.thumb=URL.createObjectURL(it.file)}
+    box.appendChild(el);
+  });
+  d.getElementById('saveBtn').disabled=!dirHandle;
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+d.getElementById('list').addEventListener('click',async e=>{
+  const btn=e.target.closest('button');if(!btn)return;
+  const itemEl=btn.closest('.item');const idx=[...itemEl.parentNode.children].indexOf(itemEl);
+  const it=items[idx];if(!it)return;
+  const op=btn.dataset.op;
+  if(op==='up'&&idx>0){[items[idx-1],items[idx]]=[items[idx],items[idx-1]];render()}
+  if(op==='down'&&idx<items.length-1){[items[idx+1],items[idx]]=[items[idx],items[idx+1]];render()}
+  if(op==='del'){
+    if(it.existing&&it.img&&imagesDir){try{await imagesDir.deleteEntry(it.img.split('/').pop())}catch(_){}}
+    items.splice(idx,1);render();
+  }
+  if(op==='replace'){
+    const inp=d.createElement('input');inp.type='file';inp.accept='image/*';
+    inp.onchange=()=>{if(inp.files[0]){it.file=inp.files[0];it.thumb=URL.createObjectURL(inp.files[0]);render()}};
+    inp.click();
+  }
+});
+d.getElementById('list').addEventListener('change',e=>{
+  const t=e.target;if(!t.dataset.k)return;
+  const itemEl=t.closest('.item');const idx=[...itemEl.parentNode.children].indexOf(itemEl);
+  if(items[idx])items[idx][t.dataset.k]=t.value;
+});
+
+/* ---------- 连接目录 ---------- */
+const dirStatus=d.getElementById('dirStatus');
+d.getElementById('connectBtn').addEventListener('click',async()=>{
+  try{
+    if(!window.showDirectoryPicker){dirStatus.textContent='当前浏览器不支持目录写入，请使用 Edge / Chrome 桌面版';dirStatus.className='status err';return}
+    dirHandle=await showDirectoryPicker({mode:'readwrite'});
+    imagesDir=await dirHandle.getDirectoryHandle('images',{create:true});
+    dataDir=await dirHandle.getDirectoryHandle('data',{create:true});
+    dirStatus.textContent='✅ 已连接：'+dirHandle.name+'（将写入 images/ 与 data/works.json）';
+    dirStatus.className='status ok';
+    d.getElementById('saveBtn').disabled=false;
+    await loadExisting();
+  }catch(err){if(err.name!=='AbortError'){dirStatus.textContent='连接失败：'+err.message;dirStatus.className='status err'}}
+});
+
+async function loadExisting(){
+  try{
+    const fh=await dataDir.getFileHandle('works.json');
+    const file=await fh.getFile();
+    const data=JSON.parse(await file.text());
+    if(!Array.isArray(data.works))return;
+    items=[];
+    for(const w of data.works){
+      const it={key:keySeq++,file:null,existing:true,img:w.img||'',art:w.art||'',cat:w.cat||'风景',title:w.title||'',sub:w.sub||'',desc:w.desc||'',thumb:null};
+      // 尝试预览已有图片
+      try{
+        const imgFile=await imagesDir.getFileHandle((w.img||'').split('/').pop());
+        const blob=await (await imgFile.getFile()).slice(0,1,undefined)&&await imgFile.getFile();
+        it.thumb=URL.createObjectURL(blob);
+      }catch(_){}
+      items.push(it);
+    }
+    render();
+    d.getElementById('summary').textContent='已载入 '+items.length+' 件现有作品，可直接修改或删除。';
+  }catch(_){}
+}
+
+/* ---------- 保存 ---------- */
+d.getElementById('saveBtn').addEventListener('click',async()=>{
+  if(!dirHandle){alert('请先点击「① 连接网站目录」');return}
+  const status=d.getElementById('saveStatus');
+  status.textContent='正在保存…';status.className='status';
+  try{
+    const used=new Set();
+    for(const it of items){
+      if(!it.file)continue;
+      let name=sanitize(it.file.name);
+      let final=name, n=1;
+      while(used.has(final)||await exists(imagesDir,final)){final=name.replace(/\.[^.]+$/,'')+'-'+(n++)+'.'+ext(name)}
+      used.add(final);
+      const fh=await imagesDir.getFileHandle(final,{create:true});
+      const w=await fh.createWritable();
+      await w.write(it.file);await w.close();
+      it.img='images/'+final;it.art='';it.existing=true;it.file=null;
+    }
+    const works=items.map((it,i)=>({
+      id:it.existing&&it.img?('w'+i+'_'+Date.now()):('w'+i+'_'+Date.now()),
+      cat:it.cat,
+      type:TYPE_MAP[it.cat]||'摄影',
+      title:it.title||'未命名作品',
+      sub:it.sub||autoSub(it),
+      desc:it.desc||'',
+      img:it.img||'',
+      ...(it.art?{art:it.art}:{})
+    }));
+    const fh=await dataDir.getFileHandle('works.json',{create:true});
+    const w=await fh.createWritable();
+    await w.write(JSON.stringify({works},null,2));await w.close();
+    render();
+    status.textContent='✅ 已保存 '+works.length+' 件作品';
+    status.className='status ok';
+    d.getElementById('summary').textContent='下一步：双击网站目录里的 sync.bat，自动上传到 GitHub，约 1 分钟后网站更新完成。';
+  }catch(err){status.textContent='保存失败：'+err.message;status.className='status err'}
+});
+function autoSub(it){const m={'风景':'LANDSCAPE','人像':'PORTRAIT','纪实':'DOCUMENTARY','视频':'VIDEO','AI设计':'AIGC'};return (m[it.cat]||'WORK')+' · '+String(it.cat).toUpperCase()}
+function sanitize(n){n=n.replace(/[\u4e00-\u9fa5]/g,'-');n=n.replace(/[^\w.\-]/g,'-').replace(/-+/g,'-');return n||'work.jpg'}
+function ext(n){const m=n.match(/\.([^.]+)$/);return m?m[1]:'jpg'}
+async function exists(dir,name){try{await dir.getFileHandle(name);return true}catch(_){return false}}
+
+/* ---------- 导出备用 ---------- */
+d.getElementById('exportBtn').addEventListener('click',()=>{
+  const works=items.map((it,i)=>({id:'w'+i,cat:it.cat,type:TYPE_MAP[it.cat]||'摄影',title:it.title||'未命名作品',sub:it.sub||autoSub(it),desc:it.desc||'',img:it.img||'',...(it.art?{art:it.art}:{})}));
+  const blob=new Blob([JSON.stringify({works},null,2)],{type:'application/json'});
+  const a=d.createElement('a');a.href=URL.createObjectURL(blob);a.download='works.json';a.click();
+  d.getElementById('summary').textContent='已导出 works.json。备用方式：请把作品图片手动保存到网站 images/ 文件夹，并把本文件放到 data/ 文件夹。';
+});
+</script>
+</body>
+</html>
