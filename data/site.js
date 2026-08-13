@@ -89,14 +89,10 @@ window.__SITE_DATA__ = {
     "certificates": [
       {
         "title": "《印象•里口山》摄影赛项 学生组 三等奖",
-        "meta": "山东省中等职业学校艺术设计教育联盟会员单位 · 2024年4月12日"
+        "meta": ""
       },
       {
         "title": "《印象•里口山》平面设计赛项 学生组 最佳色彩呈现奖",
-        "meta": "山东省中等职业学校艺术设计教育联盟会员单位 · 2024年4月12日"
-      },
-      {
-        "title": "",
         "meta": ""
       }
     ]
@@ -110,22 +106,22 @@ window.__SITE_DATA__ = {
     "social": [
       {
         "name": "抖音",
-        "handle": "@YIDU-彭",
+        "handle": "",
         "url": "https://www.douyin.com/user/MS4wLjABAAAA61Ug517XNS-lOmX-g7NIVUKzmrTXJXHiS7-sQ9H904a7BzjmUw48nB54hX3-uADp"
       },
       {
         "name": "哔哩哔哩",
-        "handle": "YIDU-彭",
+        "handle": "",
         "url": "https://space.bilibili.com/501211522"
       },
       {
         "name": "小红书",
-        "handle": "YIDU-彭",
+        "handle": "",
         "url": "https://www.xiaohongshu.com/user/profile/65ec025c0000000005008c81"
       },
       {
         "name": "微博",
-        "handle": "YIDU-彭",
+        "handle": "",
         "url": "https://weibo.com/u/7902890418"
       }
     ]
