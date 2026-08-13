@@ -106,7 +106,29 @@ window.__SITE_DATA__ = {
     "sub": "商业拍摄、视频制作或 AI 视觉设计项目，欢迎随时联系。无论是品牌宣传、个人写真，还是创意概念，我都会认真对待每一个想法。",
     "email": "3391848624@qq.com",
     "phone": "156 6611 5928",
-    "services": "摄影 / 剪辑 / AI 设计"
+    "services": "摄影 / 剪辑 / AI 设计",
+    "social": [
+      {
+        "name": "抖音",
+        "handle": "@YIDU-彭",
+        "url": "https://www.douyin.com/user/MS4wLjABAAAA61Ug517XNS-lOmX-g7NIVUKzmrTXJXHiS7-sQ9H904a7BzjmUw48nB54hX3-uADp"
+      },
+      {
+        "name": "哔哩哔哩",
+        "handle": "YIDU-彭",
+        "url": "https://space.bilibili.com/501211522"
+      },
+      {
+        "name": "小红书",
+        "handle": "YIDU-彭",
+        "url": "https://www.xiaohongshu.com/user/profile/65ec025c0000000005008c81"
+      },
+      {
+        "name": "微博",
+        "handle": "YIDU-彭",
+        "url": "https://weibo.com/u/7902890418"
+      }
+    ]
   },
   "foot": {
     "text": "© 2026 YIDU-彭 · 以视觉，讲故事"
