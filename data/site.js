@@ -127,6 +127,6 @@ window.__SITE_DATA__ = {
     ]
   },
   "foot": {
-    "text": "© 2026 YIDU-彭 · 以视觉，讲故事"
+    "text": "© 2026 YIDU-彭"
   }
 };
